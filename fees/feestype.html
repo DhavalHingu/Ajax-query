@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery Add / Remove feestype</title>
+<style type="text/css">
+    form{
+        margin: 20px 0;
+    }
+    form input, button{
+        padding: 5px;
+    }
+    table{
+        width: 100%;
+        margin-bottom: 20px;
+		border-collapse: collapse;
+    }
+    table, th, td{
+        border: 1px solid #cdcdcd;
+    }
+    table th, table td{
+        padding: 10px;
+        text-align: left;
+    }
+</style>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".add-row").click(function(){
+            var r = $("#f").val();
+            var b= $("#cost").val();
+            
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + r+ "</td><td>" + b + "</td></tr>";
+            $("table tbody").append(markup);
+        });
+        
+        // Find and remove selected table rows
+        $(".delete-row").click(function(){
+            $("table tbody").find('input[name="record"]').each(function(){
+            	if($(this).is(":checked")){
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });    
+</script>
+</head>
+<body>
+     <form>
+     Fees type:<select name="ftype" id="f">
+      <option>mess fees</option>
+      <option>hostel fees</option>
+      </select>
+       Cost: <input type="text" id="cost" placeholder="enter cost">
+        <input type="button" class="add-row" value="Add">
+        
+
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>fees type</th>
+                <th>cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" name="record"></td>
+                <td>hostel fees</td>
+                <td>485</td>
+            </tr>
+        </tbody>
+         </table>
+    <button type="button" class="delete-row">Delete</button>
+</body> 
+</html>                                     
